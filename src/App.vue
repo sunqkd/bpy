@@ -30,4 +30,15 @@ export default {
 		height:100%;
 		background:#ffffff;
 	}
+    a{
+        text-decoration: none;
+    }
+    .ellipsis{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    #app{
+        height:100%;
+    }
 </style>

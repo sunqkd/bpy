@@ -3,6 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
+const domain='https://test1.dyly.com';
 
 module.exports = {
   dev: {
@@ -10,7 +11,22 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/vc': {
+        target: domain,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/vc': '/vc'
+        }
+      },
+      '/pc': {
+        target: domain,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/pc': '/pc'
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -43,7 +59,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
 
     /**
      * Source Maps
