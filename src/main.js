@@ -5,17 +5,26 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import store from './store'
 import axios from 'axios'
 Vue.prototype.axios = axios;
 
 Vue.use(ElementUI);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+router.afterEach((to, from, next) => {
+	//机构 行业 项目没有登录就跳转登录页面
+	if ((to.path == '/bpy') && document.cookie.indexOf('rememberMatch=') == -1) {
+		router.push('/login')
+	}
+})
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+	el: '#app',
+	store,
+	router,
+	components: { App },
+	template: '<App/>'
 })
