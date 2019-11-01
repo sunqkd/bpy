@@ -23,7 +23,7 @@
                                 <span class="bptext">BP云小程序</span>
                             </div>
                         </li>
-                        <li>进入工作台</li>
+                        <li @click="loginOF()">{{this.userInfo?'进入工作台':'登录'}}</li>
                     </ul>
                 </div>
             </div>
@@ -66,19 +66,28 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="loginTest">
-            <iframe id="iframe" :src="url" frameborder="0" style="width:100%;height:221px;overflow:hidden" scrolling="no"></iframe>
-        </div> -->
+        <div class="loginTest" v-if="wxFlag">
+            <div class="contain">
+                <img src="/static/img/closepop.png" alt="" @click="closeWX()">
+                <span>微信登录</span>
+                <iframe id="iframe" :src="wxurl" frameborder="0" style="width:100%;height:250px;overflow:hidden" scrolling="no"></iframe>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import Swiper from 'swiper';
+import {mapState,mapMutations} from 'vuex'
 export default {
     data(){
         return {
-            url:''
+            wxurl:'', // 微信二维码
+            wxFlag:false, // 登录弹窗
         }
     },
+    computed: {
+		...mapState(['cookie','userInfo','bgColor'])
+	},
     created(){
         this.getloginCode();
     },
@@ -88,17 +97,18 @@ export default {
         })
     },
     methods:{
-        getloginCode(){ // 获取
+        ...mapMutations(['saveCookie','saveUserInfo']),
+        getloginCode(){ // 获取二维码
             this.axios.post('/vc/wxLog/wxLoginCode_BP').then(res=>{
                 if(res.data.status==1){
-                    this.url=res.data.msg;
-                    let index=this.url.indexOf('&');
-                    this.url=this.url.slice(0,index)+'&href=data:text/css;base64,LmltcG93ZXJCb3ggLnFyY29kZSB7d2lkdGg6IDE0MHB4O21hcmdpbi10b3A6MDt9Ci5pbXBvd2VyQm94IC50aXRsZSB7ZGlzcGxheTogbm9uZTt9Ci5pbXBvd2VyQm94IC5pbmZvIHt3aWR0aDogMjAwcHg7fQouc3RhdHVzX2ljb24ge2Rpc3BsYXk6IG5vbmV9Ci5pbXBvd2VyQm94IC5zdGF0dXMge3RleHQtYWxpZ246IGNlbnRlcjsgY29sb3I6ICM5OTk7fQouaW1wb3dlckJveCAuc3RhdHVzIHAgeyBmb250LXdlaWdodDogMzAwfQouaW1wb3dlckJveCAuc3RhdHVzX3R4dCBwIHt0b3A6IDNweH0KLmltcG93ZXJCb3ggLmljb24zOF9tc2cuc3VjY3tkaXNwbGF5Om5vbmV9'+this.url.slice(index)
+                    this.wxurl=res.data.msg;
+                    let index=this.wxurl.indexOf('&');
+                    this.wxurl=this.wxurl.slice(0,index)+'&href=data:text/css;base64,LmltcG93ZXJCb3ggLnFyY29kZSB7d2lkdGg6IDE0MHB4O21hcmdpbi10b3A6MDt9Ci5pbXBvd2VyQm94IC50aXRsZSB7ZGlzcGxheTogbm9uZTt9Ci5pbXBvd2VyQm94IC5pbmZvIHt3aWR0aDogMjAwcHg7fQouc3RhdHVzX2ljb24ge2Rpc3BsYXk6IG5vbmV9Ci5pbXBvd2VyQm94IC5zdGF0dXMge3RleHQtYWxpZ246IGNlbnRlcjsgY29sb3I6ICM5OTk7fQouaW1wb3dlckJveCAuc3RhdHVzIHAgeyBmb250LXdlaWdodDogMzAwfQouaW1wb3dlckJveCAuc3RhdHVzX3R4dCBwIHt0b3A6IDNweH0KLmltcG93ZXJCb3ggLmljb24zOF9tc2cuc3VjY3tkaXNwbGF5Om5vbmV9'+this.wxurl.slice(index)
                     console.log(res);
                 }
             })
         },
-        newSwiper(){
+        newSwiper(){ // 轮播图
             var mySwiper = new Swiper ('.swiper-container', {
                 loop: true, // 循环轮播
                 autoplay:5000,
@@ -112,6 +122,17 @@ export default {
                 　　　swiper.update()
                 }
             }) 
+        },
+        loginOF(){ // 登录或者进入工作台
+            if(this.userInfo){
+                // 进入工作台
+            }else{
+                // 登录
+                this.wxFlag = true;
+            }
+        },
+        closeWX(){ // 关闭弹窗
+            this.wxFlag = false;
         }
     }
 }
@@ -355,6 +376,31 @@ export default {
             display:flex;
             align-items: center;
             justify-content: center;
+            .contain{
+                width:340px;
+                height:340px;
+                background:rgba(255,255,255,1);
+                border-radius:8px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position:relative;
+                img{
+                    width:20px;
+                    height:20px;
+                    display:inline-block;
+                    position:absolute;
+                    right:16px;
+                    top:16px;
+                    cursor:pointer;
+                }
+                span{
+                    color:#666666;
+                    font-size:20px;
+                    margin-top:40px;
+                    margin-bottom:18px;
+                }
+            }
         }
     }
 </style>

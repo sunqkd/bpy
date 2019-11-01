@@ -958,6 +958,16 @@ export default {
 
 		}
 	},
+	beforeEnter(routeTo, routeFrom, next) {
+		console.log(this.$router)
+		next();
+		// if(){
+		// 	next()
+		// } else {
+			
+		// 	next()
+		// }
+    },
 	async created(){
 		this.copyinit(); // 复制到剪切板
 		this.getindustiy(); // 获取一级行业
