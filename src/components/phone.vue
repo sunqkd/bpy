@@ -85,7 +85,7 @@ export default {
                     }
                 }).then( (res) =>{
                     if(res.data.status == 1){
-                        console.log(res);
+                        this.$router.push({path:'/bpy',query:{customerId:res.data.data.customerId}})
                     }else{
                         this.$message({
                             type: 'error',
