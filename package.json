@@ -29,6 +29,7 @@
     "clipboard": "^2.0.4",
     "qiniu-js": "^2.5.4",
     "swiper": "^3.4.2",
+    "crypto-js": "^3.1.9-1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "element-ui": "^2.12.0",
