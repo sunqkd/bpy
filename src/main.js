@@ -14,12 +14,12 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
-router.afterEach((to, from, next) => {
-	//机构 行业 项目没有登录就跳转登录页面
-	if ((to.path == '/bpy') && document.cookie.indexOf('rememberMatch=') == -1) {
-		router.push('/login')
-	}
-})
+// router.afterEach((to, from, next) => {
+// 	//机构 行业 项目没有登录就跳转登录页面
+// 	if ((to.path == '/bpy') && document.cookie.indexOf('rememberMatch=') == -1) {
+// 		router.push('/login')
+// 	}
+// })
 
 /* eslint-disable no-new */
 new Vue({

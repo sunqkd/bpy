@@ -12,7 +12,9 @@
                         <li>
                             加入微信群
                             <div class="wechatCode">
-
+                                <img src="/static/img/pm.jpg" alt="" />
+                                <span class="pmtext">微信扫码加产品经理入群</span>
+                                <span class="pmsubtext">问题反馈 · 体验新功能</span>
                             </div>
                         </li>
                         <li>BP云小程序</li>
@@ -107,7 +109,11 @@ export default {
                             cursor:pointer;
                             &:nth-child(1){
                                 margin-left:0;
-                                
+                                &:hover{
+                                    .wechatCode{
+                                        display:block;
+                                    }  
+                                }
                             }
                             &:last-child{
                                 width:94px;
@@ -116,20 +122,42 @@ export default {
                                 
                             }
                             .wechatCode{
+                                display:none;
                                 position:absolute;
                                 left:-110px;
-                                top:30px;
+                                top:38px;
                                 width:180px;
-                                height:212px;
+                                padding:20px 0;
+                                box-sizing: border-box;
                                 background:rgba(255,255,255,1);
                                 box-shadow:0px 4px 8px 0px rgba(0,0,0,0.08);
                                 border-radius:6px;
+                                text-align: center;
+                                img{
+                                    width:120px;
+                                    height:auto;
+                                    margin-bottom:10px;
+                                }
+                                span{
+                                    display: block;
+                                }
+                                .pmtext{
+                                    color:#222222;
+                                    font-size:13px;
+                                    line-height: 18px;
+                                }
+                                .pmsubtext{
+                                    color:#666666;
+                                    font-size:13px;
+                                    line-height: 18px;
+                                }
                             }
                         }
                     }
                 }
             }
         }
+        // 微信登录
         .loginTest{
             width:100%;
             height:100%;

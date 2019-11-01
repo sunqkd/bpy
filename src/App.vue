@@ -22,7 +22,7 @@ export default {
             })
         }else{
             console.log('暂未登陆！')
-            this.$router.push('/');
+            // this.$router.push('/');
         }
     },
     methods: {
