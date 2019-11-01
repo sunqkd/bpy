@@ -49,7 +49,9 @@ export default {
 	html,body{
 		width:100%;
 		height:100%;
-		background:#ffffff;
+		background:rgba(244,246,246,1);
+        &::-webkit-scrollbar{width: 4px;}
+        &::-webkit-scrollbar-thumb{width: 5px;background: blue;background-color: #DDE1E4}
 	}
     a{
         text-decoration: none;
@@ -76,5 +78,28 @@ export default {
         .el-table::before{
             height:0 !important;
         }
+    }
+    .swiper-pagination-bullet {
+        display: inline-block;
+        width:40px;
+        height:8px;
+        background:rgba(0,0,0,0.15);
+        border-radius:5px;
+    }
+    .swiper-pagination-bullet-active {
+        width:40px;
+        height:8px;
+        background:rgba(40,120,255,1);
+        border-radius:5px;
+    }
+    .swiper-pagination-fraction,
+    .swiper-pagination-custom,
+    .swiper-container-horizontal > .swiper-pagination-bullets {
+        bottom: 10px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+        padding-right: 35px;
     }
 </style>
