@@ -10,20 +10,20 @@ export default {
     name: 'App',
     mounted(){
         // 有cookie，获取用户信息判断是否有效
-        if(document.cookie){
-            this.axios.post('/vc/member/getMemberDetail').then(res=>{
-                if(res.data.status==1){
-                    this.saveCookie(document.cookie)
-                    this.saveUserInfo(res.data.data)
-                }else{
-                    console.log('暂未登陆！')
-                    // this.$router.push('/');
-                }
-            })
-        }else{
-            console.log('暂未登陆！')
-            // this.$router.push('/');
-        }
+        // if(document.cookie){
+        //     this.axios.post('/vc/member/getMemberDetail').then(res=>{
+        //         if(res.data.status==1){
+        //             this.saveCookie(document.cookie)
+        //             this.saveUserInfo(res.data.data)
+        //         }else{
+        //             console.log('暂未登陆！')
+        //             // this.$router.push('/');
+        //         }
+        //     })
+        // }else{
+        //     console.log('暂未登陆！')
+        //     // this.$router.push('/');
+        // }
     },
     methods: {
         ...mapMutations(['saveCookie','saveUserInfo'])

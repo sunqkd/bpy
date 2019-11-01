@@ -1,7 +1,7 @@
 <template>
   	<div id="center">
 		<div class="progress">
-			{{userInfo}}
+			<!-- {{userInfo}} -->
 			<div v-for="(item,index) in progressData" :key="index">
 				<el-progress :percentage="item" v-if="item < 100"></el-progress>
 			</div>
@@ -1061,7 +1061,7 @@ export default {
 		async getMemberDetail(){
 			await this.axios.post('/vc/member/getMemberDetail').then(res=>{
                 if(res.data.status==1){
-                    this.saveCookie(document.cookie)
+                    this.saveCookie(this.$route.query.customerId)
 					this.saveUserInfo(res.data.data)
 					console.log(res.data.data)
                 }else{
@@ -1316,7 +1316,7 @@ export default {
 			this.$router.push('/');
 		},
 		toCenter(){
-			this.$router.push('/center');
+			this.$router.push('/login');
 		},
 		tologin(){ //
 			this.$router.push('/login');

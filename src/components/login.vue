@@ -5,7 +5,7 @@
             <div class="bannerTitle">
                 <div class="bannerLeft">
                     <img src="/static/img/logo1.png" alt="">
-                    <span>BP云助手</span>
+                    <span>BP云</span>
                 </div>
                 <div class="bannerRight">
                     <ul class="bannerUl">
@@ -27,8 +27,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="freecharge">
-                免费试用
+            <div class="freecharge" @click="loginOF()">
+                免费使用
             </div>
             <div class="Bpcontent">
                 <div class="banner01">
@@ -125,7 +125,7 @@ export default {
         },
         loginOF(){ // 登录或者进入工作台
             if(this.userInfo){
-                // 进入工作台
+                this.$router.push({path:'/bpy',query:{customerId:this.cookie}})
             }else{
                 // 登录
                 this.wxFlag = true;
