@@ -34,7 +34,7 @@
 							<!-- {{userInfo}} -->
 							<li>
 								<img @click="toCenter" :src="userInfo.customerHeadPath||'/static/img/default_img.png'" alt="">
-								<span>{{userInfo.customerName}}</span>
+								<span class="ellipsis">{{userInfo.customerName}}</span>
 							</li>
 							<li style="cursor:pointer" @click="loginout">退出登录</li>
 						</ul>
@@ -1061,7 +1061,6 @@ export default {
 		async getMemberDetail(){
 			await this.axios.post('/vc/member/getMemberDetail').then(res=>{
                 if(res.data.status==1){
-					console.log(this.getCookie('rememberMatch'));
 					this.saveCookie(this.getCookie('rememberMatch'))
 					
 					this.saveUserInfo(res.data.data)

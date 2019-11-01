@@ -103,7 +103,6 @@ export default {
                 if(res.data.status==1){
                     this.saveCookie(this.getCookie('rememberMatch'))
 					this.saveUserInfo(res.data.data)
-					console.log(res.data.data)
                 }else{
                     console.log('暂未登陆！')
                     // this.$router.push('/');
@@ -139,7 +138,7 @@ export default {
                     this.wxurl=res.data.msg;
                     let index=this.wxurl.indexOf('&');
                     this.wxurl=this.wxurl.slice(0,index)+'&href=data:text/css;base64,LmltcG93ZXJCb3ggLnFyY29kZSB7d2lkdGg6IDE0MHB4O21hcmdpbi10b3A6MDt9Ci5pbXBvd2VyQm94IC50aXRsZSB7ZGlzcGxheTogbm9uZTt9Ci5pbXBvd2VyQm94IC5pbmZvIHt3aWR0aDogMjAwcHg7fQouc3RhdHVzX2ljb24ge2Rpc3BsYXk6IG5vbmV9Ci5pbXBvd2VyQm94IC5zdGF0dXMge3RleHQtYWxpZ246IGNlbnRlcjsgY29sb3I6ICM5OTk7fQouaW1wb3dlckJveCAuc3RhdHVzIHAgeyBmb250LXdlaWdodDogMzAwfQouaW1wb3dlckJveCAuc3RhdHVzX3R4dCBwIHt0b3A6IDNweH0KLmltcG93ZXJCb3ggLmljb24zOF9tc2cuc3VjY3tkaXNwbGF5Om5vbmV9'+this.wxurl.slice(index)
-                    console.log(res);
+                   
                 }
             })
         },

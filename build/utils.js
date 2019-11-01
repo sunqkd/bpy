@@ -48,7 +48,7 @@ exports.cssLoaders = function (options) {
       return ExtractTextPlugin.extract({
         use: loaders,
         fallback: 'vue-style-loader',
-        publicPath: '../../'  //加我叫我加我加我加我
+        publicPath: '../../'  //加我叫我加我加我加我 加载element 小图标
       })
     } else {
       return ['vue-style-loader'].concat(loaders)

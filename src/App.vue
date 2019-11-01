@@ -64,6 +64,11 @@ export default {
     #app{
         height:100%;
     }
+    .ellipsis {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
     #center{
         .current-row{
             td{
