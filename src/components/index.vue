@@ -1,6 +1,7 @@
 <template>
   	<div id="center">
 		<div class="progress">
+			{{userInfo}}
 			<div v-for="(item,index) in progressData" :key="index">
 				<el-progress :percentage="item" v-if="item < 100"></el-progress>
 			</div>
@@ -959,7 +960,12 @@ export default {
 		}
 	},
 	async created(){
-		console.log(this.$router)
+		if(this.$route.query.customerId ){
+			this.setCookie('rememberMatch',this.$route.query.customerId,7)
+			await this.getMemberDetail(); // 获取用户信息
+		}else{
+			this.$router.push('/login')
+		}
 		this.copyinit(); // 复制到剪切板
 		this.getindustiy(); // 获取一级行业
 		await this.getFile();
@@ -1052,6 +1058,18 @@ export default {
 		...mapState(['cookie','userInfo','bgColor'])
 	},
 	methods:{
+		async getMemberDetail(){
+			await this.axios.post('/vc/member/getMemberDetail').then(res=>{
+                if(res.data.status==1){
+                    this.saveCookie(document.cookie)
+					this.saveUserInfo(res.data.data)
+					console.log(res.data.data)
+                }else{
+                    console.log('暂未登陆！')
+                    // this.$router.push('/');
+                }
+            })
+		},
 		projectSizerClick(index){ // 我的项目访问记录
 			this.MyProjectsign = index;
 			// 过滤数组
