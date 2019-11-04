@@ -1622,6 +1622,7 @@ export default {
 							this.newProjectFlag = false;
 							this.projectPage.pageNum = 1;
 							this.getProject();
+							this.getindustiy(); // 获取一级行业
 							this.myprojectDetail({id:this.projectUId});
 						}else{
 							this.$message({
@@ -2027,6 +2028,7 @@ export default {
 							message: '删除成功!'
 						});
 						this.getProject();
+						this.getindustiy(); // 获取一级行业
 						this.initdata = { // 初始化数据
 							fileflag: 0 // 未分类文件
 						}
@@ -2091,6 +2093,7 @@ export default {
 						message: '关联成功!'
 					});
 					this.linkprojectFlag = false;
+					this.getindustiy(); // 获取一级行业
 					this.getFile();
 					this.getProject();
 				}else{
