@@ -96,7 +96,7 @@ export default {
 </script>
 <style lang="scss">
     .uploadimg{position: relative;
-        .imgIcon{width:80px;vertical-align: middle;height: 80px;padding:28px;background: rgba(51,62,62,0.08);border: 1px solid rgba(0,0,0,0.15);border-radius: 4px;cursor: pointer;}
+        .imgIcon{width:80px;vertical-align: middle;height: 80px;padding:28px;box-sizing: border-box;background: rgba(51,62,62,0.08);border: 1px solid rgba(0,0,0,0.15);border-radius: 4px;cursor: pointer;}
         input{position: absolute;left: 0;top:0;display: block;width: 80px;height: 80px;z-index: 2;cursor: pointer;opacity: 0;}
         .previewImg{width:80px;height: 80px;display: flex;justify-content: center;align-items: center;position: absolute;left:0;top:0px;
             img{max-width: 100%;max-height: 100%;}
