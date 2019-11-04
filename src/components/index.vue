@@ -189,8 +189,8 @@
 							</div>
 							<div class="rightNav">
 								<!-- 行业筛选 -->
-								<span style="font-size:13px;color:rgba(153,153,153,1); display:none">筛选：</span>
-								<el-select v-model="value5" multiple collapse-tags placeholder="请选择行业标签" size="small" class="select" style="display:none">
+								<span style="font-size:13px;color:rgba(153,153,153,1);">筛选：</span>
+								<el-select v-model="value5" multiple collapse-tags placeholder="请选择行业标签" size="small" class="select">
 									<el-option
 									v-for="item in options"
 									:key="item.value"
@@ -1184,22 +1184,20 @@ export default {
 			this.shareSecondProflag = false;
 		},
 		shareFirCertain(){ // 保存并分享项目 第一次
-			if(this.sharefirstProject.textarea){
-				this.axios.post('/pc/bpProjectDetail/saveShareDesc',{
-					"id": this.projectUId,
-					"sharedesc": this.sharefirstProject.textarea, // 第一次分享项目
-					"type": "0"
-				}).then((res)=>{
-					if(res.data.status == 1){ // 分享成功
-						this.shareSecondProflag = true; // 分享过
-						this.shareProjectflag = false; // 首次 分享项目
-						this.secondPro.textarea = this.sharefirstProject.textarea; // 第二次分享弹窗
-						this.getProjectCode(this.projectdetail); // 获取二维码
-					}
-				})
-			}else{
-				alert('请输入内容');
-			}
+			
+			this.axios.post('/pc/bpProjectDetail/saveShareDesc',{
+				"id": this.projectUId,
+				"sharedesc": this.sharefirstProject.textarea, // 第一次分享项目
+				"type": "0"
+			}).then((res)=>{
+				if(res.data.status == 1){ // 分享成功
+					this.shareSecondProflag = true; // 分享过
+					this.shareProjectflag = false; // 首次 分享项目
+					this.secondPro.textarea = this.sharefirstProject.textarea; // 第二次分享弹窗
+					this.getProjectCode(this.projectdetail); // 获取二维码
+				}
+			})
+			
 		},
 		changeShareState(item){ // 改变文件分享状态
 		    if(item.shareStatus == 'N'){ // 新增可分享文件
@@ -1302,25 +1300,23 @@ export default {
 			}
 		},
 		shareNoBpCertain(){ // 保存并分享
-		    if(this.shareNoBp.textarea){ // 非空校验
-				this.axios.post('/pc/bpProjectDetail/saveShareDesc',{
-					"id": this.businessPlanId,
-					"sharedesc": this.shareNoBp.textarea,
-					"type": "1"
-				}).then((res)=>{
-					if(res.data.status == 1){ // 保存成功
-						this.addshare(); // 新增文件
-						this.shareNoBpflag = false;
-						this.shareSecondBpflag = true;
-						this.secondText.textarea = this.shareNoBp.textarea; // 第二次分享弹窗
-						this.getShareCode(this.undetailData.bpFileVoList[0]); // 获取二维码
-					}else{
-						
-					}
-				})
-			}else{ // 
-				alert('请输入内容');
-			}
+		    
+			this.axios.post('/pc/bpProjectDetail/saveShareDesc',{
+				"id": this.businessPlanId,
+				"sharedesc": this.shareNoBp.textarea,
+				"type": "1"
+			}).then((res)=>{
+				if(res.data.status == 1){ // 保存成功
+					this.addshare(); // 新增文件
+					this.shareNoBpflag = false;
+					this.shareSecondBpflag = true;
+					this.secondText.textarea = this.shareNoBp.textarea; // 第二次分享弹窗
+					this.getShareCode(this.undetailData.bpFileVoList[0]); // 获取二维码
+				}else{
+					
+				}
+			})
+			
 		},
 		// 新增分享文件
 		addshare(){ // 新增分享文件 (保存分享后)
