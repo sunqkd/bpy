@@ -975,7 +975,9 @@ export default {
 			this.initdata = { // 初始化数据
 				fileflag: 1 // 未分类文件
 			}
-			this.$refs.singleTableOne.setCurrentRow(this.noClassifyData[0]); // 默认选中第一行
+			if(this.noClassifyData[0]){
+				this.$refs.singleTableOne.setCurrentRow(this.noClassifyData[0]); // 默认选中第一行
+			}
 			this.getBPdetail({businessPlanId:this.businessPlanId}); // 详情
 			this.getBpLog(); // 日志
 		}
@@ -985,7 +987,9 @@ export default {
 			this.initdata = { // 初始化数据
 				fileflag: 2 // 未分类文件
 			}
-			this.$refs.singleTableTwo.setCurrentRow(this.projectData[0]); // 默认选中第一行
+			if(this.projectData[0]){
+				this.$refs.singleTableTwo.setCurrentRow(this.projectData[0]); // 默认选中第一行
+			}
 			this.myprojectDetail({id:this.projectUId}); // 详情
 			this.getrecodeCode(); // bp记录
 			this.getprojectLog(); // 日志
