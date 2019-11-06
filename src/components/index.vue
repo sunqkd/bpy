@@ -387,7 +387,7 @@
 									<div>
 										<span class="ellipsis" style="width:180px">
 											<i>
-												<a v-if="projectdetail.source == 0" :href="'https://www.dyly.com/#/project/index/detail?projectId='+projectdetail.projectId +'&name='+projectdetail.name" target="_blank" style="color:#2878FF">{{scope.row.name}}</a>
+												<a v-if="projectdetail.source == 0" :href="'https://www.dyly.com/#/project/index/detail?projectId='+projectdetail.projectId +'&name='+projectdetail.name" target="_blank" style="color:#2878FF">{{projectdetail.name}}</a>
 												<i v-else>{{projectdetail.name}} </i>
 											</i>
 										</span>
