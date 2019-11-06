@@ -237,7 +237,7 @@
 													</div>
 
 													<span style="color:rgba(34,34,34,1);font-size:14px;margin-right:32px">
-														<router-link v-if="scope.row.source == 0 " :to="{path:'/project/index/detail',query:{projectId:scope.row.projectId,name:scope.row.name}}" target="_blank" style="color:#2878FF">{{scope.row.name}}</router-link>
+														<a  v-if="scope.row.source == 0" :href="'https://www.dyly.com/#/project/index/detail?projectId='+scope.row.projectId +'&name='+scope.row.name" target="_blank" style="color:#2878FF">{{scope.row.name}}</a>
 														<i v-else>{{scope.row.name}}</i>
 													</span>
 													<span style="color:#999999" class="ellipsis">
@@ -387,7 +387,7 @@
 									<div>
 										<span class="ellipsis" style="width:180px">
 											<i>
-												<router-link v-if="projectdetail.source == 0 " :to="{path:'/project/index/detail',query:{projectId:projectdetail.projectId,name:projectdetail.name}}" target="_blank" style="color:#2878FF">{{projectdetail.name}}</router-link>
+												<a v-if="projectdetail.source == 0" :href="'https://www.dyly.com/#/project/index/detail?projectId='+projectdetail.projectId +'&name='+projectdetail.name" target="_blank" style="color:#2878FF">{{scope.row.name}}</a>
 												<i v-else>{{projectdetail.name}} </i>
 											</i>
 										</span>
